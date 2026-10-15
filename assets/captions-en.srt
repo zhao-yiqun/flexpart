@@ -1,0 +1,67 @@
+1
+00:00:00,000 --> 00:00:04,000
+FlexPart: Text-controlled 3D part segmentation.
+
+2
+00:00:04,000 --> 00:00:09,000
+First, provide a 3D mesh and a control prompt.
+
+3
+00:00:09,000 --> 00:00:17,000
+FlexPart assigns part identities directly to the mesh.
+
+4
+00:00:17,000 --> 00:00:22,000
+Mesh views and a granularity request go to the visual planner.
+
+5
+00:00:22,000 --> 00:00:35,000
+Coarse, medium and fine partitions come from the same segmentation model.
+
+6
+00:00:35,000 --> 00:00:40,000
+Segment the two swords and the hands.
+
+7
+00:00:40,000 --> 00:00:51,000
+The requested parts receive distinct labels; the rest becomes background.
+
+8
+00:00:51,000 --> 00:01:11,000
+Only the text changes: the requested part list determines the output granularity.
+
+9
+00:01:11,000 --> 00:01:19,000
+One FlexPart model. Different text prompts. The partition you ask for.
+
+10
+00:01:19,000 --> 00:01:24,000
+Generalization to AIGC assets: four generated assets, three levels of detail.
+
+11
+00:01:24,000 --> 00:01:34,000
+Tracked machine: prompt-controlled granularity on AI-generated geometry.
+
+12
+00:01:34,000 --> 00:01:44,000
+Sci-fi blaster: coarse, medium and fine partitions.
+
+13
+00:01:44,000 --> 00:01:54,000
+Armored character: coarse, medium and fine partitions.
+
+14
+00:01:54,000 --> 00:02:04,000
+Winged robot: coarse, medium and fine partitions.
+
+15
+00:02:04,000 --> 00:02:10,000
+The input text determines both the granularity and the parts to extract.
+
+16
+00:02:10,000 --> 00:02:14,000
+what you ask for is what you get
+
+17
+00:02:14,000 --> 00:02:22,000
+FlexPart: Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity

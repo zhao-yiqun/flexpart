@@ -1,0 +1,38 @@
+{
+  "duration": 142,
+  "loops": [
+    {
+      "duration": 10,
+      "width": 1424,
+      "height": 400
+    },
+    {
+      "duration": 10,
+      "width": 1424,
+      "height": 400
+    },
+    {
+      "duration": 10,
+      "width": 1424,
+      "height": 400
+    },
+    {
+      "duration": 10,
+      "width": 1424,
+      "height": 400
+    }
+  ],
+  "dimensions": {
+    "scroll": 390,
+    "width": 390,
+    "missing": []
+  },
+  "errors": [],
+  "checks": [
+    "desktop and mobile visual snapshots",
+    "mode tabs and arrow-key navigation",
+    "video chapter seek",
+    "four loops play and pause",
+    "all local links resolve"
+  ]
+}

@@ -1,0 +1,43 @@
+Input geometry
+Input prompts
+An off-road kart with a roll cage, wide tyres and 
+a rear exhaust. It contains 14 parts:
+1. ■seat <loc1>  <shape1>
+2.  ■axle  <loc2>  <shape2>
+3.  ■roll cage <loc3> <shape3>
+… …
+Segmentation
+Visual 
+planner
+(Qwen-VL)
+Coarse: 5 parts, 
+1. left arm, ….
+Medium: 9 parts, 
+1. left boot….
+Fine: 15 parts, 
+1. left hand ….
+(i) User-guided part segmentation
+(ii) Automatic three-level segmentation
+Multi-view rendering
+Planned multi-level prompts
+User input 
+“segment the two swords and the hands”
+Visual 
+planner
+(Qwen-VL)
+This object 
+contains 4 parts to 
+segment:
+1. ■ sword…, 
+2. ■ sword…,
+3. ■ left hand …, 
+4. ■ right hand…,
+All remaining 
+parts are 
+background:  
+helmet….….
+Selective 
+segmentation
+(iii) Selective part segmentation
+Planned prompts
+……

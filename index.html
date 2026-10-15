@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FlexPart — Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity</title>
+  <meta name="description" content="FlexPart segments a given 3D mesh according to text. One model supports user-guided, multi-granularity, and selective part segmentation.">
+  <meta property="og:title" content="FlexPart — What you ask for is what you get">
+  <meta property="og:description" content="Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity">
+  <meta property="og:image" content="assets/teaser.png">
+  <meta name="theme-color" content="#376b54">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+<nav aria-label="Page navigation"><a class="wordmark" href="#top">Flex<span>Part</span><i aria-hidden="true">●</i></a><div><a href="#method">Method</a><a href="#generalization">Generalization</a><a href="#paper">Paper</a></div></nav>
+<main id="top">
+  <header>
+    <p class="eyebrow">TEXT-CONTROLLED 3D PART SEGMENTATION</p>
+    <h1><span class="title-lead">FlexPart</span><span class="title-detail">Text-Controlled Semantics-Aware 3D Part Segmentation<br class="desktop-break"> at Flexible Granularity</span></h1>
+    <div class="authors"><span>Yiqun Zhao<sup>1,2*</sup></span><span>Jiachen Xu<sup>2</sup></span><span>Yihao Zhi<sup>3,2*</sup></span><span>Yunfei Zhao<sup>2</sup></span><span>Zibo Zhao<sup>2</sup></span><span>Xintong Han<sup>2</sup></span><span>Chunchao Guo<sup>2†</sup></span><span>Shenghua Gao<sup>1,4†</sup></span></div>
+    <div class="affiliations"><span><sup>1</sup> The University of Hong Kong</span><span><sup>2</sup> Tencent Hunyuan</span><span><sup>3</sup> The Chinese University of Hong Kong, Shenzhen</span><span><sup>4</sup> Shenzhen Loop Area Institute</span></div>
+    <p class="author-note">* Work done during an internship at Tencent Hunyuan. &nbsp; † Corresponding authors.</p>
+    <div class="links"><a class="pill" href="assets/paper.pdf" target="_blank" rel="noopener">Paper <small>PDF</small></a><a class="pill" href="assets/flexpart-film.mp4" download>Video <small>1080p</small></a><a class="pill" href="#generalization">Explore results <span aria-hidden="true">↗</span></a></div>
+  </header>
+  <section class="hero" aria-label="FlexPart overview video">
+    <video id="overview-film" controls muted playsinline preload="metadata" poster="assets/film-poster.jpg" aria-label="FlexPart overview: three text-controlled segmentation workflows followed by rotating AIGC assets at three granularities"><source src="assets/flexpart-film.mp4" type="video/mp4"><source src="assets/flexpart-film.webm" type="video/webm"><track kind="captions" src="assets/captions-en.vtt" srclang="en" label="English"></video>
+    <div class="chapters" aria-label="Video chapters"><button data-seek="4">01 · User-guided</button><button data-seek="17">02 · Multi-granularity</button><button data-seek="35">03 · Selective</button><button data-seek="51">Change the prompt</button><button data-seek="71">All in one</button><button data-seek="84">AIGC assets</button></div>
+    <p class="caption">One model. Different prompts. The partition you ask for.</p>
+  </section>
+  <section class="abstract">
+    <p class="eyebrow">WHAT YOU ASK FOR IS WHAT YOU GET</p>
+    <h2>Your mesh.<br>Your parts. Your level of detail.</h2>
+    <p>A 3D asset admits many useful decompositions. <strong>FlexPart</strong> lets text specify both how finely to divide a mesh and which semantic parts to extract. A control prompt lists part names with location and shape descriptions; the model assigns discrete part identities directly to the mesh faces.</p>
+    <p>One segmentation model supports manually authored prompts, automatic coarse-to-fine partitions, and selective extraction. An optional visual planner completes the prompt from mesh renderings and a simple user request.</p>
+  </section>
+  <section id="method" class="figure-section">
+    <div class="section-heading"><span class="number">01 / METHOD</span><h2>Three ways to ask. One model to answer.</h2><p>Geometry + a control prompt → FlexPart → a 3D part partition.</p></div>
+    <div class="mode-tabs" role="tablist" aria-label="Segmentation mode"><button id="tab-manual" role="tab" aria-selected="true" aria-controls="panel-manual" data-panel="manual">User-guided</button><button id="tab-multi" role="tab" aria-selected="false" aria-controls="panel-multi" data-panel="multi" tabindex="-1">Multi-granularity</button><button id="tab-selective" role="tab" aria-selected="false" aria-controls="panel-selective" data-panel="selective" tabindex="-1">Selective</button></div>
+    <div class="mode-panel" id="panel-manual" role="tabpanel" aria-labelledby="tab-manual">
+      <div class="workflow"><figure><img src="assets/a_mesh.png" alt="Unsegmented off-road kart"><figcaption>Input geometry</figcaption></figure><div class="prompt"><span class="prompt-title">Control prompt</span><p>An off-road kart with 14 parts:</p><p>1. seat &lt;location&gt; &lt;shape&gt;<br>2. axle &lt;location&gt; &lt;shape&gt;<br>3. roll cage &lt;location&gt; &lt;shape&gt;<br>…</p></div><div class="model-block"><span aria-hidden="true">→</span><strong>FlexPart</strong><span aria-hidden="true">→</span></div><figure><img src="assets/a_parts.png" alt="The same kart partitioned into colored semantic parts"><figcaption>Requested part partition</figcaption></figure></div>
+      <p class="panel-caption">Write the part inventory for precise control. Semantic names, locations and shapes tell the model what each label means.</p>
+    </div>
+    <div class="mode-panel" id="panel-multi" role="tabpanel" aria-labelledby="tab-multi" hidden>
+      <div class="planner-line"><span>Mesh views + granularity request</span><span aria-hidden="true">→</span><span>Visual planner</span><span aria-hidden="true">→</span><span>Control prompts</span><span aria-hidden="true">→</span><strong>FlexPart</strong></div>
+      <div class="triple"><figure><img src="assets/b_coarse.png" alt="Coarse character segmentation into five requested parts"><figcaption>Coarse · 5 parts</figcaption></figure><figure><img src="assets/b_middle.png" alt="Medium character segmentation into nine requested parts"><figcaption>Medium · 9 parts</figcaption></figure><figure><img src="assets/b_fine.png" alt="Fine character segmentation into fifteen requested parts"><figcaption>Fine · 15 parts</figcaption></figure></div>
+      <p class="panel-caption">Change the prompt to change the granularity. All three partitions use the same input geometry and the same segmentation model.</p>
+    </div>
+    <div class="mode-panel" id="panel-selective" role="tabpanel" aria-labelledby="tab-selective" hidden>
+      <div class="selective-flow"><div><blockquote>“Segment the two swords<br>and the hands.”</blockquote><p>The visual planner turns the request and mesh views into a control prompt.</p></div><div class="prompt"><span class="prompt-title">Planned prompt</span><p>1. sword on the back<br>2. sword in the hand<br>3. left hand<br>4. right hand</p><p class="background-contract">All remaining parts: background.</p></div><figure><img src="assets/c_out.png" alt="Only two swords and two hands have part colors; the rest of the character is gray"><figcaption>FlexPart · selective segmentation</figcaption></figure></div>
+      <p class="panel-caption">Name what matters. The selected parts receive distinct labels and the prompt explicitly assigns the remaining parts to background.</p>
+    </div>
+    <figure class="paper-teaser"><a href="assets/teaser.png" target="_blank" rel="noopener"><img src="assets/teaser.png" alt="Full paper teaser showing the three FlexPart workflows in the original paper layout" loading="lazy"></a><figcaption>The three workflows in the paper teaser. The visual planner writes prompts; FlexPart performs the 3D segmentation.</figcaption></figure>
+  </section>
+  <section id="generalization" class="figure-section">
+    <div class="section-heading"><span class="number">02 / GENERALIZATION TO AIGC ASSETS</span><h2>Flexible parts on generated geometry.</h2><p>Four Hunyuan3D 3.1 assets from the paper, each shown at coarse, medium and fine granularity.</p></div>
+    <div class="turntable-control"><span>Coarse → Medium → Fine</span><button id="rotation-toggle" type="button" aria-pressed="false">Play rotations</button></div>
+    <div class="asset-grid">
+      <figure><h3>Tracked machine</h3><video class="turntable" muted loop playsinline preload="none" poster="assets/asset1-poster.jpg" aria-label="Tracked machine rotating at coarse, medium and fine granularity"><source src="assets/asset1-turntable.mp4" type="video/mp4"><source src="assets/asset1-turntable.webm" type="video/webm"></video><figcaption>Coarse <span>Medium</span> Fine</figcaption></figure>
+      <figure><h3>Sci-fi blaster</h3><video class="turntable" muted loop playsinline preload="none" poster="assets/asset2-poster.jpg" aria-label="Sci-fi blaster rotating at coarse, medium and fine granularity"><source src="assets/asset2-turntable.mp4" type="video/mp4"><source src="assets/asset2-turntable.webm" type="video/webm"></video><figcaption>Coarse <span>Medium</span> Fine</figcaption></figure>
+      <figure><h3>Armored character</h3><video class="turntable" muted loop playsinline preload="none" poster="assets/asset3-poster.jpg" aria-label="Armored character rotating at coarse, medium and fine granularity"><source src="assets/asset3-turntable.mp4" type="video/mp4"><source src="assets/asset3-turntable.webm" type="video/webm"></video><figcaption>Coarse <span>Medium</span> Fine</figcaption></figure>
+      <figure><h3>Winged robot</h3><video class="turntable" muted loop playsinline preload="none" poster="assets/asset4-poster.jpg" aria-label="Winged robot rotating at coarse, medium and fine granularity"><source src="assets/asset4-turntable.mp4" type="video/mp4"><source src="assets/asset4-turntable.webm" type="video/webm"></video><figcaption>Coarse <span>Medium</span> Fine</figcaption></figure>
+    </div>
+    <p class="caption">Three granularities, side by side. A fixed camera and synchronized model rotations make the parts easy to compare.</p>
+  </section>
+  <section class="figure-section" id="paper"><span class="number">03 / PAPER</span><h2>FlexPart</h2><p class="paper-title">Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity</p><div class="links left"><a class="pill" href="assets/paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a><a class="pill" href="assets/flexpart-film.mp4" download>Download video</a></div></section>
+  <section class="closing"><p>what you ask for<br><span>is what you get</span></p></section>
+</main>
+<footer><span>FlexPart</span><span>Text as a shared interface for 3D part segmentation.</span></footer>
+</body></html>

@@ -1,0 +1,7 @@
+{
+  "name": "flexpart-homepage-film",
+  "private": true,
+  "type": "module",
+  "scripts": {"preview": "python3 -m http.server 8765", "film": "node scripts/render-film.mjs"},
+  "devDependencies": {"playwright": "1.56.1", "three": "0.180.0"}
+}

@@ -1,0 +1,8 @@
+const film=document.querySelector('#overview-film');
+document.querySelectorAll('[data-seek]').forEach(button=>button.addEventListener('click',()=>{film.currentTime=Number(button.dataset.seek);film.play().catch(()=>{});film.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});}));
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function selectTab(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;document.querySelector(`#panel-${t.dataset.panel}`).hidden=!active;});}
+tabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectTab(tab));tab.addEventListener('keydown',event=>{let target;if(event.key==='ArrowRight')target=tabs[(i+1)%tabs.length];if(event.key==='ArrowLeft')target=tabs[(i+tabs.length-1)%tabs.length];if(event.key==='Home')target=tabs[0];if(event.key==='End')target=tabs.at(-1);if(target){event.preventDefault();selectTab(target);target.focus();}});});
+const rotations=[...document.querySelectorAll('.turntable')],toggle=document.querySelector('#rotation-toggle');let playing=false;
+toggle.addEventListener('click',async()=>{playing=!playing;if(playing){const results=await Promise.allSettled(rotations.map(v=>{v.currentTime=0;return v.play();}));playing=results.some(r=>r.status==='fulfilled');}else rotations.forEach(v=>v.pause());toggle.textContent=playing?'Pause rotations':'Play rotations';toggle.setAttribute('aria-pressed',String(playing));});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){rotations.forEach(v=>v.pause());playing=false;toggle.textContent='Play rotations';toggle.setAttribute('aria-pressed','false');}});

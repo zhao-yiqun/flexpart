@@ -1,0 +1,195 @@
+{
+  "paper": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg",
+  "title": "FlexPart: Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity",
+  "teaser": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+  "assets": [
+    {
+      "asset": "a_mesh.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/a_mesh.png",
+      "sha256": "3afe54e78516678ff616d0f32d7363c206a395f5c4f9aaf10943055be09e93c5"
+    },
+    {
+      "asset": "a_parts.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/a_parts.png",
+      "sha256": "69a23086ee5315278922c28d8c1b1b407cb3dedc340160be1f5aed20509d3772"
+    },
+    {
+      "asset": "b_coarse.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/b_coarse.png",
+      "sha256": "63e79771b51c39bb9e20ea9f7ed4b2e82760ad267844d3ddf09cdaebdf7852ed"
+    },
+    {
+      "asset": "b_middle.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/b_middle.png",
+      "sha256": "fe57a4664b76236baaa8dac150f8d11bf917b70c09e6e273b44a25c5cbb9cbcf"
+    },
+    {
+      "asset": "b_fine.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/b_fine.png",
+      "sha256": "e983f4dc3b1dfb9e27cf5247413e96d01f77ab44ccc50eeb050927d64fd9f515"
+    },
+    {
+      "asset": "b_views.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/b_views.png",
+      "sha256": "76806e01c6f0f91145f3e69b40507d3eb9245dccbec3b276792b760629092229"
+    },
+    {
+      "asset": "c_out.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/c_out.png",
+      "sha256": "1d973448c44a5716a3d2cf537ba4708d91adb71b1aa9dce44e229f49be713cef"
+    },
+    {
+      "asset": "c_views.png",
+      "source": "/apdcephfs_zwfy2/share_303204533/yiqun/paper_teaser_renders_20260903/ppt/c_views.png",
+      "sha256": "ec009dbdae4f7c9c0ad94547fe41cdd088d6d0a6e0218082718d32f13bb6c118"
+    },
+    {
+      "asset": "a_mesh.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 17
+    },
+    {
+      "asset": "a_parts.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 13
+    },
+    {
+      "asset": "b_coarse.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 14
+    },
+    {
+      "asset": "b_middle.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 15
+    },
+    {
+      "asset": "b_fine.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 16
+    },
+    {
+      "asset": "c_out.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 22
+    },
+    {
+      "asset": "b_views.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 23
+    },
+    {
+      "asset": "c_views.png",
+      "authoritative_source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/teaserv4.pdf",
+      "pdf_xref": 24
+    },
+    {
+      "asset": "asset1-coarse.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/2e686eb0-1036-4fe5-a372-49a070058871/c.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/renders_multigran_colorfaithful_20260917/renders/2e686eb0-1036-4fe5-a372-49a070058871/coarse/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen4b/coarse/2e686eb0-1036-4fe5-a372-49a070058871.glb",
+      "uid": "2e686eb0-1036-4fe5-a372-49a070058871",
+      "level": "coarse",
+      "camera": "az060_el25"
+    },
+    {
+      "asset": "asset1-middle.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/2e686eb0-1036-4fe5-a372-49a070058871/m.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/renders_multigran_colorfaithful_20260917/renders/2e686eb0-1036-4fe5-a372-49a070058871/middle/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen4b/middle/2e686eb0-1036-4fe5-a372-49a070058871.glb",
+      "uid": "2e686eb0-1036-4fe5-a372-49a070058871",
+      "level": "middle",
+      "camera": "az060_el25"
+    },
+    {
+      "asset": "asset1-fine.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/2e686eb0-1036-4fe5-a372-49a070058871/f.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/renders_multigran_colorfaithful_20260917/renders/2e686eb0-1036-4fe5-a372-49a070058871/fine/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen4b/fine/2e686eb0-1036-4fe5-a372-49a070058871.glb",
+      "uid": "2e686eb0-1036-4fe5-a372-49a070058871",
+      "level": "fine",
+      "camera": "az060_el25"
+    },
+    {
+      "asset": "asset2-coarse.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/4d1750c2-db2b-427b-9d42-80fa742ab6f5/c.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/renders_multigran_colorfaithful_20260917/renders/4d1750c2-db2b-427b-9d42-80fa742ab6f5/coarse/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/coarse/4d1750c2-db2b-427b-9d42-80fa742ab6f5.glb",
+      "uid": "4d1750c2-db2b-427b-9d42-80fa742ab6f5",
+      "level": "coarse",
+      "camera": "az000_el25"
+    },
+    {
+      "asset": "asset2-middle.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/4d1750c2-db2b-427b-9d42-80fa742ab6f5/m.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/renders_multigran_colorfaithful_20260917/renders/4d1750c2-db2b-427b-9d42-80fa742ab6f5/middle/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/middle/4d1750c2-db2b-427b-9d42-80fa742ab6f5.glb",
+      "uid": "4d1750c2-db2b-427b-9d42-80fa742ab6f5",
+      "level": "middle",
+      "camera": "az000_el25"
+    },
+    {
+      "asset": "asset2-fine.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/4d1750c2-db2b-427b-9d42-80fa742ab6f5/f.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/renders_multigran_colorfaithful_20260917/renders/4d1750c2-db2b-427b-9d42-80fa742ab6f5/fine/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/fine/4d1750c2-db2b-427b-9d42-80fa742ab6f5.glb",
+      "uid": "4d1750c2-db2b-427b-9d42-80fa742ab6f5",
+      "level": "fine",
+      "camera": "az000_el25"
+    },
+    {
+      "asset": "asset3-coarse.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/08671bba-5610-4b12-b15f-a79a30d5a9f8/c.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/manual_review_extra4_multigran_corrected_20260917/renders/08671bba-5610-4b12-b15f-a79a30d5a9f8/coarse/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/benchmark/manual_review_current_prompts_ckpt4_20260822/inference/bimodal_smoothcond_step125k/coarse/08671bba-5610-4b12-b15f-a79a30d5a9f8.glb",
+      "uid": "08671bba-5610-4b12-b15f-a79a30d5a9f8",
+      "level": "coarse",
+      "camera": "az030_el25"
+    },
+    {
+      "asset": "asset3-middle.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/08671bba-5610-4b12-b15f-a79a30d5a9f8/m.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/manual_review_extra4_multigran_corrected_20260917/SOURCE_MANIFEST.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/benchmark/manual_review_current_prompts_ckpt4_20260822/inference/bimodal_smoothcond_step125k/middle/08671bba-5610-4b12-b15f-a79a30d5a9f8.glb",
+      "uid": "08671bba-5610-4b12-b15f-a79a30d5a9f8",
+      "level": "middle",
+      "camera": "az030_el25"
+    },
+    {
+      "asset": "asset3-fine.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/08671bba-5610-4b12-b15f-a79a30d5a9f8/f.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/manual_review_extra4_multigran_corrected_20260917/renders/08671bba-5610-4b12-b15f-a79a30d5a9f8/fine/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/benchmark/manual_review_current_prompts_ckpt4_20260822/inference/bimodal_smoothcond_step125k/fine/08671bba-5610-4b12-b15f-a79a30d5a9f8.glb",
+      "uid": "08671bba-5610-4b12-b15f-a79a30d5a9f8",
+      "level": "fine",
+      "camera": "az030_el25"
+    },
+    {
+      "asset": "asset4-coarse.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/2357c8e5-e5ed-4b8e-aa50-33a1157978cb/c.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/replacement_2357c8e5_qwen35b_hybrid75_125_20260921/renders/2357c8e5-e5ed-4b8e-aa50-33a1157978cb/coarse/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/coarse/2357c8e5-e5ed-4b8e-aa50-33a1157978cb.glb",
+      "uid": "2357c8e5-e5ed-4b8e-aa50-33a1157978cb",
+      "level": "coarse",
+      "camera": "az330_el25"
+    },
+    {
+      "asset": "asset4-middle.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/2357c8e5-e5ed-4b8e-aa50-33a1157978cb/m.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/replacement_2357c8e5_qwen35b_hybrid75_125_20260921/renders/2357c8e5-e5ed-4b8e-aa50-33a1157978cb/middle/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/middle/2357c8e5-e5ed-4b8e-aa50-33a1157978cb.glb",
+      "uid": "2357c8e5-e5ed-4b8e-aa50-33a1157978cb",
+      "level": "middle",
+      "camera": "az330_el25"
+    },
+    {
+      "asset": "asset4-fine.png",
+      "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/7_aigc/2357c8e5-e5ed-4b8e-aa50-33a1157978cb/f.png",
+      "render_manifest": "/apdcephfs_zwfy2/share_303204533/yiqun/figure_assets/Fig7_aigc/replacement_2357c8e5_qwen35b_hybrid75_125_20260921/renders/2357c8e5-e5ed-4b8e-aa50-33a1157978cb/fine/manifest.json",
+      "mesh": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/fine/2357c8e5-e5ed-4b8e-aa50-33a1157978cb.glb",
+      "uid": "2357c8e5-e5ed-4b8e-aa50-33a1157978cb",
+      "level": "fine",
+      "camera": "az330_el25"
+    }
+  ]
+}

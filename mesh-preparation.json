@@ -1,0 +1,110 @@
+[
+  {
+    "output": "assets/models/asset1-coarse.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen4b/coarse/2e686eb0-1036-4fe5-a372-49a070058871.glb",
+    "source_sha256": "c31ac9cafc0e8592c2b64f4bb2ac96004527db8967639c83b4a743a2523f5248",
+    "input_faces": 1996448,
+    "display_faces": 259534,
+    "parts": 4,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset1-middle.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen4b/middle/2e686eb0-1036-4fe5-a372-49a070058871.glb",
+    "source_sha256": "88769d65b52df3a0499cbc992e096e85fc8471241f01f54e01f6f7577017c5be",
+    "input_faces": 1996448,
+    "display_faces": 260360,
+    "parts": 23,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset1-fine.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen4b/fine/2e686eb0-1036-4fe5-a372-49a070058871.glb",
+    "source_sha256": "ecd72ae4645fd2179560dd09a42e12629e602d95d45759b5638f3592a145ad08",
+    "input_faces": 1996448,
+    "display_faces": 261662,
+    "parts": 51,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset2-coarse.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/coarse/4d1750c2-db2b-427b-9d42-80fa742ab6f5.glb",
+    "source_sha256": "a5e2a8ed0bcc9ccbdeaad6d1b0c2dbe42dea9fc88c3dfc529651aa54c8a0f4f9",
+    "input_faces": 1999154,
+    "display_faces": 260077,
+    "parts": 5,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset2-middle.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/middle/4d1750c2-db2b-427b-9d42-80fa742ab6f5.glb",
+    "source_sha256": "11849d9a350963cef89593eb9b6033b72b4c2285b9249039cb62ccceff738d2f",
+    "input_faces": 1999154,
+    "display_faces": 260286,
+    "parts": 15,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset2-fine.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/fine/4d1750c2-db2b-427b-9d42-80fa742ab6f5.glb",
+    "source_sha256": "25dc20cfe28bfdbbf2e3650f0c410425e1363883c0b3691043224d10aa6cc4b9",
+    "input_faces": 1999154,
+    "display_faces": 263282,
+    "parts": 60,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset3-coarse.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/benchmark/manual_review_current_prompts_ckpt4_20260822/inference/bimodal_smoothcond_step125k/coarse/08671bba-5610-4b12-b15f-a79a30d5a9f8.glb",
+    "source_sha256": "53b3991749b37b3d94bf3de3262bb384bbae4a9befbb9c7d92e6303205c67b29",
+    "input_faces": 1999798,
+    "display_faces": 259965,
+    "parts": 6,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset3-middle.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/benchmark/manual_review_current_prompts_ckpt4_20260822/inference/bimodal_smoothcond_step125k/middle/08671bba-5610-4b12-b15f-a79a30d5a9f8.glb",
+    "source_sha256": "3b8684546b1ef991f0df9a6b9ec4eedd283eec55d48b202f77109a8f26b6fa0f",
+    "input_faces": 1999798,
+    "display_faces": 260189,
+    "parts": 12,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset3-fine.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/benchmark/manual_review_current_prompts_ckpt4_20260822/inference/bimodal_smoothcond_step125k/fine/08671bba-5610-4b12-b15f-a79a30d5a9f8.glb",
+    "source_sha256": "90628bcafac4751845a6251039554488aee375082c1927c48704b8a433b35955",
+    "input_faces": 1999798,
+    "display_faces": 261337,
+    "parts": 44,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset4-coarse.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/coarse/2357c8e5-e5ed-4b8e-aa50-33a1157978cb.glb",
+    "source_sha256": "e26af338d1987c4b73f6d60290d8895075fe79c10ef52f8b7a66c623cf0bec95",
+    "input_faces": 1997846,
+    "display_faces": 259715,
+    "parts": 5,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset4-middle.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/middle/2357c8e5-e5ed-4b8e-aa50-33a1157978cb.glb",
+    "source_sha256": "660ffaf637e9a857ac604b340bac80ec897bb77234cafd08c890ae36770b6539",
+    "input_faces": 1997846,
+    "display_faces": 260265,
+    "parts": 45,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  },
+  {
+    "output": "assets/models/asset4-fine.glb",
+    "source": "/apdcephfs_zwfy2/share_303204533/yiqun/aigc_qwen_multigran_20260818/inference/hybrid75_125/qwen35b/fine/2357c8e5-e5ed-4b8e-aa50-33a1157978cb.glb",
+    "source_sha256": "65d1e6ca7fc72a060ec1fa4e41ae140b54f5cad6040621e672a5af7224c7cdff",
+    "input_faces": 1997846,
+    "display_faces": 260454,
+    "parts": 26,
+    "operation": "independent per-part display simplification; transforms applied; source palette preserved"
+  }
+]
