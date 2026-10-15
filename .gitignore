@@ -2,4 +2,6 @@ node_modules/
 assets/models/
 review/
 flexpart-homepage.zip
+__pycache__/
+*.py[cod]
 *.log
