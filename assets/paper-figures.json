@@ -1,0 +1,77 @@
+[
+  {
+    "asset": "method-pipeline.webp",
+    "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR27_partseg/figures/pipelinev3.pdf",
+    "page": 1,
+    "crop_points": [
+      0.0,
+      0.0,
+      768.64306640625,
+      393.7539978027344
+    ],
+    "pixels": [
+      3075,
+      1576
+    ]
+  },
+  {
+    "asset": "results-tiny.webp",
+    "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR_page/homepage/assets/paper.pdf",
+    "page": 6,
+    "crop_points": [
+      56,
+      62,
+      557,
+      269
+    ],
+    "pixels": [
+      2505,
+      1035
+    ]
+  },
+  {
+    "asset": "results-granularity.webp",
+    "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR_page/homepage/assets/paper.pdf",
+    "page": 6,
+    "crop_points": [
+      56,
+      325,
+      557,
+      565
+    ],
+    "pixels": [
+      2505,
+      1200
+    ]
+  },
+  {
+    "asset": "results-selective.webp",
+    "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR_page/homepage/assets/paper.pdf",
+    "page": 8,
+    "crop_points": [
+      57,
+      61,
+      387,
+      193
+    ],
+    "pixels": [
+      2310,
+      924
+    ]
+  },
+  {
+    "asset": "results-ablation.webp",
+    "source": "/apdcephfs_cq12/share_360969/yiqun/Paper/CVPR_page/homepage/assets/paper.pdf",
+    "page": 8,
+    "crop_points": [
+      391,
+      61,
+      557,
+      189
+    ],
+    "pixels": [
+      1162,
+      896
+    ]
+  }
+]

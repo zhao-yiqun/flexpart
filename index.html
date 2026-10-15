@@ -12,7 +12,7 @@
   <script src="site.js" defer></script>
 </head>
 <body>
-<nav aria-label="Page navigation"><a class="wordmark" href="#top">Flex<span>Part</span><i aria-hidden="true">●</i></a><div><a href="#method">Method</a><a href="#generalization">Generalization</a><a href="#paper">Paper</a></div></nav>
+<nav aria-label="Page navigation"><a class="wordmark" href="#top">Flex<span>Part</span><i aria-hidden="true">●</i></a><div><a href="#method">Method</a><a href="#results">Results</a><a href="#generalization">AIGC</a><a href="#paper">Paper</a></div></nav>
 <main id="top">
   <header>
     <p class="eyebrow">TEXT-CONTROLLED 3D PART SEGMENTATION</p>
@@ -34,7 +34,12 @@
     <p>One segmentation model supports manually authored prompts, automatic coarse-to-fine partitions, and selective extraction. An optional visual planner completes the prompt from mesh renderings and a simple user request.</p>
   </section>
   <section id="method" class="figure-section">
-    <div class="section-heading"><span class="number">01 / METHOD</span><h2>Three ways to ask. One model to answer.</h2><p>Geometry + a control prompt → FlexPart → a 3D part partition.</p></div>
+    <div class="section-heading"><span class="number">01 / METHOD</span><h2>Text controls a native 3D part-identity field.</h2><p>A shared representation connects geometry, semantic part descriptions, and the desired partition.</p></div>
+    <figure class="research-figure"><a href="assets/method-pipeline.webp" target="_blank" rel="noopener"><img src="assets/method-pipeline.webp" alt="FlexPart method from Figure 2: a part-aware VAE encodes position, normal and part IDs; a text-conditioned diffusion transformer generates the part-identity field from geometry and control prompts" loading="lazy" width="3075" height="1576"></a><figcaption><strong>Method overview.</strong> A part-aware VAE represents geometry and part identity. A diffusion transformer conditions on geometry and encoded text to generate the part-ID field; querying mesh face centers yields the segmentation. Full and selective decompositions differ in their control prompts, with an explicit background item for selective inputs. <a href="assets/paper.pdf#page=4" target="_blank" rel="noopener">Figure 2 in the paper ↗</a></figcaption></figure>
+    <div class="method-notes"><p><strong>Describe the partition.</strong> Part names, locations and shapes specify the desired label space.</p><p><strong>Generate the identity field.</strong> Text and geometry jointly condition the same diffusion model.</p><p><strong>Label the original mesh.</strong> Face-center queries assign discrete part IDs directly in 3D.</p></div>
+  </section>
+  <section id="control" class="figure-section">
+    <div class="section-heading"><span class="number">02 / TEXT CONTROL</span><h2>Three ways to ask. One model to answer.</h2><p>Geometry + a control prompt → FlexPart → a 3D part partition.</p></div>
     <div class="mode-tabs" role="tablist" aria-label="Segmentation mode"><button id="tab-manual" role="tab" aria-selected="true" aria-controls="panel-manual" data-panel="manual">User-guided</button><button id="tab-multi" role="tab" aria-selected="false" aria-controls="panel-multi" data-panel="multi" tabindex="-1">Multi-granularity</button><button id="tab-selective" role="tab" aria-selected="false" aria-controls="panel-selective" data-panel="selective" tabindex="-1">Selective</button></div>
     <div class="mode-panel" id="panel-manual" role="tabpanel" aria-labelledby="tab-manual">
       <div class="workflow"><figure><img src="assets/a_mesh.png" alt="Unsegmented off-road kart"><figcaption>Input geometry</figcaption></figure><div class="prompt"><span class="prompt-title">Control prompt</span><p>An off-road kart with 14 parts:</p><p>1. seat &lt;location&gt; &lt;shape&gt;<br>2. axle &lt;location&gt; &lt;shape&gt;<br>3. roll cage &lt;location&gt; &lt;shape&gt;<br>…</p></div><div class="model-block"><span aria-hidden="true">→</span><strong>FlexPart</strong><span aria-hidden="true">→</span></div><figure><img src="assets/a_parts.png" alt="The same kart partitioned into colored semantic parts"><figcaption>Requested part partition</figcaption></figure></div>
@@ -51,8 +56,28 @@
     </div>
     <figure class="paper-teaser"><a href="assets/teaser.png" target="_blank" rel="noopener"><img src="assets/teaser.png" alt="Full paper teaser showing the three FlexPart workflows in the original paper layout" loading="lazy"></a><figcaption>The three workflows in the paper teaser. The visual planner writes prompts; FlexPart performs the 3D segmentation.</figcaption></figure>
   </section>
+  <section id="results" class="figure-section">
+    <div class="section-heading"><span class="number">03 / EXPERIMENTS</span><h2>Semantic parts, at the requested scale.</h2><p>Selected main-paper results on full, multi-granularity and selective segmentation.</p></div>
+    <article class="result-block">
+      <div class="result-heading"><h3>Part segmentation on PartObjaverse-Tiny</h3><p>Recover the requested semantic parts across diverse object shapes.</p></div>
+      <figure class="research-figure"><a href="assets/results-tiny.webp" target="_blank" rel="noopener"><img src="assets/results-tiny.webp" alt="Figure 3: four PartObjaverse-Tiny examples comparing GT, FlexPart-GT, FlexPart-Auto, SegviGen-GT, SegviGen-Auto, P3-SAM, PartField, SAMPart3D and Find3D" loading="lazy" width="2505" height="1035"></a><figcaption><strong>Full-partition comparison.</strong> “-GT” uses annotated conditions: part descriptions for FlexPart and a rendered guidance map for SegviGen. “-Auto” uses planner-completed prompts or predicted maps; other baselines use their native inputs. <a href="assets/paper.pdf#page=6" target="_blank" rel="noopener">Figure 3 ↗</a></figcaption></figure>
+      <p class="result-reading">Planner-completed prompts achieve <strong>0.681 mIoU</strong>, compared with <strong>0.594</strong> for SegviGen supplied with ground-truth guidance, under the paper’s watertight evaluation protocol. <a href="assets/paper.pdf#page=7" target="_blank" rel="noopener">Table 1 ↗</a></p>
+    </article>
+    <article class="result-block">
+      <div class="result-heading"><h3>Multi-granularity control on FlexPartBench</h3><p>Change the item list to move from broad assemblies to fine semantic parts.</p></div>
+      <figure class="research-figure"><a href="assets/results-granularity.webp" target="_blank" rel="noopener"><img src="assets/results-granularity.webp" alt="Figure 4: granularity-control comparisons; each method block shows a large fine partition and smaller coarse and medium partitions" loading="lazy" width="2505" height="1190"></a><figcaption><strong>The same geometry, different prompts.</strong> Within each method block, fine is the large panel, coarse is at the upper right, and medium is at the lower right. Baselines receive the inputs described in the paper, including ground-truth part counts for PartField and guidance maps for SegviGen. <a href="assets/paper.pdf#page=6" target="_blank" rel="noopener">Figure 4 ↗</a></figcaption></figure>
+      <p class="result-reading">FlexPart scores <strong>0.763 / 0.635 / 0.511 mIoU</strong> at coarse / medium / fine granularity, averaging <strong>0.637</strong> on the held-out benchmark. <a href="assets/paper.pdf#page=7" target="_blank" rel="noopener">Table 2 ↗</a></p>
+    </article>
+    <article class="result-block">
+      <div class="result-heading"><h3>Selective segmentation and design choices</h3><p>Extract the named parts and assign the remainder to one background region.</p></div>
+      <div class="experiment-pair">
+        <figure class="research-figure"><a href="assets/results-selective.webp" target="_blank" rel="noopener"><img src="assets/results-selective.webp" alt="Figure 5: selective segmentation at K=4 and K=8 comparing FlexPart with annotated or planner prompts against SegviGen and P3-SAM with clicks and Find3D with names" loading="lazy" width="2310" height="924"></a><figcaption><strong>Selective segmentation.</strong> The two FlexPart columns use the same model with annotated or planner-written descriptions. Click-driven baselines receive points inside the requested parts; Find3D receives names. Unrequested parts share one background region. <a href="assets/paper.pdf#page=8" target="_blank" rel="noopener">Figure 5 ↗</a></figcaption></figure>
+        <figure class="research-figure"><a href="assets/results-ablation.webp" target="_blank" rel="noopener"><img src="assets/results-ablation.webp" alt="Figure 6: ablations comparing part-ID prediction with RGB-palette targets and training without background dropping" loading="lazy" width="1162" height="896"></a><figcaption><strong>Why part IDs and background dropping?</strong> The paper’s ablations illustrate fragmentation with RGB targets and reduced accuracy without drop-to-background training. <a href="assets/paper.pdf#page=8" target="_blank" rel="noopener">Figure 6 ↗</a></figcaption></figure>
+      </div>
+    </article>
+  </section>
   <section id="generalization" class="figure-section">
-    <div class="section-heading"><span class="number">02 / GENERALIZATION TO AIGC ASSETS</span><h2>Flexible parts on generated geometry.</h2><p>Four Hunyuan3D 3.1 assets from the paper, each shown at coarse, medium and fine granularity.</p></div>
+    <div class="section-heading"><span class="number">04 / GENERALIZATION TO AIGC ASSETS</span><h2>Flexible parts on generated geometry.</h2><p>Four Hunyuan3D 3.1 assets from the paper, each shown at coarse, medium and fine granularity.</p></div>
     <div class="turntable-control"><span>Coarse → Medium → Fine</span><button id="rotation-toggle" type="button" aria-pressed="false">Play rotations</button></div>
     <div class="asset-grid">
       <figure><h3>Tracked machine</h3><video class="turntable" muted loop playsinline preload="none" poster="assets/asset1-poster.jpg" aria-label="Tracked machine rotating at coarse, medium and fine granularity"><source src="assets/asset1-turntable.mp4" type="video/mp4"><source src="assets/asset1-turntable.webm" type="video/webm"></video><figcaption>Coarse <span>Medium</span> Fine</figcaption></figure>
@@ -62,7 +87,7 @@
     </div>
     <p class="caption">Three granularities, side by side. A fixed camera and synchronized model rotations make the parts easy to compare.</p>
   </section>
-  <section class="figure-section" id="paper"><span class="number">03 / PAPER</span><h2>FlexPart</h2><p class="paper-title">Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity</p><div class="links left"><a class="pill" href="assets/paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a><a class="pill" href="assets/flexpart-film.mp4" download>Download video</a></div></section>
+  <section class="figure-section" id="paper"><span class="number">05 / PAPER</span><h2>FlexPart</h2><p class="paper-title">Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity</p><div class="links left"><a class="pill" href="assets/paper.pdf" target="_blank" rel="noopener">Read the paper <span aria-hidden="true">↗</span></a><a class="pill" href="assets/flexpart-film.mp4" download>Download video</a></div></section>
   <section class="closing"><p>what you ask for<br><span>is what you get</span></p></section>
 </main>
 <footer><span>FlexPart</span><span>Text as a shared interface for 3D part segmentation.</span></footer>

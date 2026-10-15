@@ -24,10 +24,11 @@ def prepare_static():
         im=Image.open(ROOT/f'review/frame-{t}.png').crop((72,395,1852,895)).convert('RGB')
         im.save(A/f'asset{i}-poster.jpg',quality=94)
     rows=[(0,4,'FlexPart: Text-controlled 3D part segmentation.'),(4,9,'First, provide a 3D mesh and a control prompt.'),(9,17,'FlexPart assigns part identities directly to the mesh.'),(17,22,'Mesh views and a granularity request go to the visual planner.'),(22,35,'Coarse, medium and fine partitions come from the same segmentation model.'),(35,40,'Segment the two swords and the hands.'),(40,51,'The requested parts receive distinct labels; the rest becomes background.'),(51,71,'Only the text changes: the requested part list determines the output granularity.'),(71,79,'One FlexPart model. Different text prompts. The partition you ask for.'),(79,84,'Generalization to AIGC assets: four generated assets, three levels of detail.'),(84,94,'Tracked machine: prompt-controlled granularity on AI-generated geometry.'),(94,104,'Sci-fi blaster: coarse, medium and fine partitions.'),(104,114,'Armored character: coarse, medium and fine partitions.'),(114,124,'Winged robot: coarse, medium and fine partitions.'),(124,130,'The input text determines both the granularity and the parts to extract.'),(130,134,'what you ask for is what you get'),(134,142,'FlexPart: Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity')]
+    rows[-2:]=[(130,138,'FlexPart: Text-Controlled Semantics-Aware 3D Part Segmentation at Flexible Granularity. What you ask for is what you get.')]
     (A/'captions-en.vtt').write_text('WEBVTT\n\n'+'\n\n'.join(f'{stamp(a)} --> {stamp(b)}\n{s}' for a,b,s in rows)+'\n')
     (A/'captions-en.srt').write_text('\n\n'.join(f'{i}\n{stamp(a,",")} --> {stamp(b,",")}\n{s}' for i,(a,b,s) in enumerate(rows,1))+'\n')
     # A compact review sheet without requiring a video player.
-    frames=[13,28,46,54,60,67,78,84,94,104,114,140]
+    frames=[13,28,46,54,60,67,78,84,94,104,114,136]
     sheet=Image.new('RGB',(1440,940),'#f5f7f4');draw=ImageDraw.Draw(sheet)
     for j,t in enumerate(frames):
         im=Image.open(ROOT/f'review/frame-{t}.png').convert('RGB');im.thumbnail((466,263))
@@ -36,10 +37,6 @@ def prepare_static():
     sheet.save(ROOT/'storyboard.jpg',quality=94)
 
 def assemble():
-    for section in ['method','ending']:
-        target=A/f'final-{section}.mp4'
-        if not target.exists():
-            run(['-i',str(A/f'part-{section}.mp4'),'-vf','drawbox=x=0:y=1076:w=1920:h=4:color=white:t=fill','-an','-c:v','libx264','-preset','medium','-crf','18','-threads','4','-pix_fmt','yuv420p','-movflags','+faststart',str(target)])
     for f in SEGMENTS:
         assert (A/f).is_file(),f
     manifest=ROOT/'segments.ffconcat'
@@ -55,6 +52,7 @@ def assemble():
 def package():
     paths=[ROOT/x for x in ['index.html','style.css','site.js','favicon.svg']]
     paths.extend(p for p in A.iterdir() if p.is_file() and not p.name.startswith(('part-','final-')))
+    paths.extend(p for p in (A/'fonts').iterdir() if p.is_file())
     with zipfile.ZipFile(ROOT/'flexpart-homepage.zip','w',zipfile.ZIP_DEFLATED,compresslevel=3) as z:
         for p in paths:z.write(p,p.relative_to(ROOT))
     print('site package', (ROOT/'flexpart-homepage.zip').stat().st_size,flush=True)

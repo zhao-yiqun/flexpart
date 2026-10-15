@@ -1,6 +1,8 @@
 # FlexPart homepage and video
 
-成片：`assets/flexpart-film.mp4`，1920 × 1080，30 fps，2 分 22 秒。
+成片：`assets/flexpart-film.mp4`，1920 × 1080，30 fps，2 分 18 秒。
+视频标题使用 Manrope，prompt、标注和字幕使用 Inter；字体随工程本地打包，
+渲染前显式加载并验证，避免系统字体替代。单独的口号页已移除，口号仅保留在片尾标题页。
 英文字幕已放在画面里，另提供 `captions-en.srt` 和 `captions-en.vtt`。
 这是无配音版本。网站提供 H.264 MP4 和 VP9 WebM 两种播放格式。
 
@@ -31,8 +33,7 @@ GitHub Pages 的纯静态网站包，不需要 Node 服务或构建步骤。未�
 | 01:44–01:54 | Armored character，三个粒度同屏同步旋转 |
 | 01:54–02:04 | Winged robot，三个粒度同屏同步旋转 |
 | 02:04–02:10 | 四个 AIGC asset 的三级粒度总览 |
-| 02:10–02:14 | what you ask for is what you get |
-| 02:14–02:22 | 完整论文标题与三个示例 |
+| 02:10–02:18 | 完整论文标题、what you ask for is what you get 与三个示例 |
 
 转台使用固定相机、固定灯光，模型绕自身中心旋转。三个粒度使用相同角度，
 每组 10 秒完成一圈；没有依次给每个粒度单独留时长。
@@ -46,6 +47,10 @@ GitHub Pages 的纯静态网站包，不需要 Node 服务或构建步骤。未�
 - `film.js`, `film.html`：可编辑动画源。每一帧由时间确定，无实时录屏掉帧。
 - `source-manifest.json`, `mesh-preparation.json`：素材来源与显示模型处理记录。
 - `verification.json`：浏览器检查结果。
+- `assets/method-pipeline.webp`：正文 Figure 2 方法框架图。
+- `assets/results-{tiny,granularity,selective,ablation}.webp`：正文 Figures 3–6；主页保留条件说明及相应 PDF 页码链接。
+- `assets/fonts/`：本地 Manrope / Inter 字体及 OFL 许可证。
+- `review/before-typography/`：本次字体和片尾修改前的成片与源码备份。
 - `review/homepage-{desktop,mobile}.png`：桌面和手机端实际截图。
 
 ## 素材和结果约定
@@ -82,11 +87,11 @@ fast-simplification、imageio-ffmpeg），Node 22 + npm lockfile，Playwright �
 ```bash
 npm ci
 bash scripts/run-render.sh preview
-bash scripts/run-render.sh film 0 142 flexpart-film.mp4
-bash scripts/run-render.sh site
+/apdcephfs_zwfy2/share_303204533/yiqun/miniconda3/envs/segvigen/bin/python scripts/rebuild.py
 ```
 
 `scripts/prepare.py` 提取论文素材；`scripts/prepare-meshes.py` 生成转台显示副本；
+`scripts/paper-figures.py` 提取正文方法和实验图；`scripts/rebuild.py` 重建六个片段并刷新全部成片、字幕、部署包和验证记录。
 `scripts/build-paper.py` 在隔离副本中编译 PDF；`scripts/finalize.py` 汇总片段、
 生成字幕和转台短片、制作 WebM 与部署包。转台的速度和镜头在 `film.js` 的
 `singleAsset` / `renderMesh` 中调整，字幕与网页章节在相应源文件中同步修改。

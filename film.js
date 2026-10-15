@@ -8,13 +8,21 @@ const W=1920,H=1080;
 const C={ink:'#202725',muted:'#69736e',green:'#376b54',line:'#e4e8e4',soft:'#f5f7f4',blue:'#2e6da4',orange:'#bd742e',purple:'#8c66a4'};
 const imgs={};
 await Promise.all(['a_mesh','a_parts','b_coarse','b_middle','b_fine','b_views','c_views','c_out','teaser',...Array.from({length:4},(_,i)=>['coarse','middle','fine'].map(l=>`asset${i+1}-${l}`)).flat()].map(async n=>{const im=new Image();im.src=`assets/${n}.png`;await im.decode();imgs[n]=im;}));
+// Load local font files explicitly before Canvas draws; system fallbacks used
+// to make the exported movie look different from the intended typography.
+await Promise.all([['Manrope','Manrope-Variable.ttf'],['Inter','Inter-Variable.ttf']].map(async([name,file])=>{
+    const face=new FontFace(name,`url(assets/fonts/${file})`,{weight:'100 900',style:'normal'});
+    document.fonts.add(await face.load());
+}));
 await document.fonts.ready;
+window.fontsVerified=['Manrope','Inter'].every(name=>document.fonts.check(`500 32px ${name}`));
+if(!window.fontsVerified)throw new Error('Required film fonts did not load');
 const clamp=x=>Math.max(0,Math.min(1,x));
 const ease=x=>{x=clamp(x);return x*x*(3-2*x);};
 const enter=(t,start,d=.8)=>ease((t-start)/d);
 const mix=(a,b,t)=>a+(b-a)*t;
-const font=(size=30,weight=400,serif=false)=>`${weight} ${size}px ${serif?'Georgia, "DejaVu Serif", serif':'Arial, "DejaVu Sans", sans-serif'}`;
-function text(s,x,y,size=30,color=C.ink,weight=400,align='left',serif=false){ctx.font=font(size,weight,serif);ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(s,x,y);}
+const font=(size=30,weight=400,display=false)=>`${display&&weight===400?500:weight} ${size}px "${display||size>=40?'Manrope':'Inter'}"`;
+function text(s,x,y,size=30,color=C.ink,weight=400,align='left',display=false){ctx.font=font(size,weight,display);ctx.letterSpacing=size>=40?`${-size*.025}px`:'0px';ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(s,x,y);ctx.letterSpacing='0px';}
 function lines(str,x,y,width,size=28,lineHeight=40,color=C.ink,weight=400){let yy=y;ctx.font=font(size,weight);for(const para of str.split('\n')){let row='';for(const word of para.split(' ')){const test=row?`${row} ${word}`:word;if(ctx.measureText(test).width>width&&row){text(row,x,yy,size,color,weight);yy+=lineHeight;row=word;}else row=test;}text(row,x,yy,size,color,weight);yy+=lineHeight;}return yy;}
 function rect(x,y,w,h,r=20,fill='white',stroke=null){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();}}
 function image(n,x,y,w,h,alpha=1){if(alpha<=0)return;const im=imgs[n];const s=Math.min(w/im.width,h/im.height),iw=im.width*s,ih=im.height*s;ctx.save();ctx.globalAlpha*=alpha;ctx.drawImage(im,x+(w-iw)/2,y+(h-ih)/2,iw,ih);ctx.restore();}
@@ -22,9 +30,9 @@ function fade(alpha,fn,dy=0){if(alpha<=0)return;ctx.save();ctx.globalAlpha*=alph
 function chip(s,x,y,w=190,color=C.green,fill='#eef4ef'){rect(x,y,w,48,24,fill);text(s,x+w/2,y+32,21,color,600,'center');}
 function arrow(x1,y1,x2,y2,p=1,color='#98a49e'){if(p<=0)return;const x=mix(x1,x2,p),y=mix(y1,y2,p);ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=4;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x,y);ctx.stroke();const a=Math.atan2(y2-y1,x2-x1);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-16*Math.cos(a-.48),y-16*Math.sin(a-.48));ctx.lineTo(x-16*Math.cos(a+.48),y-16*Math.sin(a+.48));ctx.closePath();ctx.fill();}
 function rule(y=950){ctx.strokeStyle=C.line;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(92,y);ctx.lineTo(1828,y);ctx.stroke();}
-function brand(){text('Flex',94,72,27,C.ink,700);text('Part',155,72,27,C.ink,400);ctx.fillStyle=C.green;ctx.beginPath();ctx.arc(220,64,4,0,7);ctx.fill();}
-function heading(kicker,title,sub){brand();text(kicker.toUpperCase(),96,144,20,C.green,600);text(title,96,222,54,C.ink,400,'left',true);if(sub)text(sub,98,271,25,C.muted);}
-function subtitle(s){rule();text(s,960,1005,29,C.ink,400,'center');}
+function brand(){text('FlexPart',94,72,27,C.ink,650,'left',true);ctx.font=font(27,650,true);const width=ctx.measureText('FlexPart').width;ctx.fillStyle=C.green;ctx.beginPath();ctx.arc(94+width+12,64,3.5,0,7);ctx.fill();}
+function heading(kicker,title,sub){brand();text(kicker.toUpperCase(),96,144,18,C.green,600);text(title,96,222,56,C.ink,500,'left',true);if(sub)text(sub,98,271,25,C.muted);}
+function subtitle(s){rule();text(s,960,1005,27,C.ink,400,'center');}
 function model(x,y,w=214,h=106){rect(x,y,w,h,20,'#eef4ef','#c9d9cb');text('FlexPart',x+w/2,y+45,30,C.green,700,'center');text('one model',x+w/2,y+76,20,C.muted,400,'center');}
 function prompt(x,y,w,h,title,body,accent=C.green){rect(x,y,w,h,18,'#fdfaf3','#e3d5bc');text(title,x+26,y+44,25,accent,600);lines(body,x+26,y+89,w-52,25,38);}
 function progress(t){}
@@ -124,7 +132,7 @@ function singleAsset(t,n){heading(`generalization to AIGC assets · ${n} / 4`,na
     subtitle('Prompt-controlled granularity generalizes to AI-generated meshes.');
 }
 function allAssets(t){heading('generalization to generated assets','Flexible control, across different shapes.','The four AIGC examples from the paper.');for(let a=0;a<4;a++){const x=100+(a%2)*890,y=330+Math.floor(a/2)*302;text(names[a],x+405,y-9,24,C.muted,500,'center');['coarse','middle','fine'].forEach((l,i)=>{image(`asset${a+1}-${l}`,x+i*280,y+14,265,240);text(['Coarse','Medium','Fine'][i],x+i*280+132,y+278,21,[C.blue,C.orange,C.green][i],500,'center');});}subtitle('The input text determines both the granularity and the parts to extract.');}
-function ending(t){if(t<4){fade(enter(t,.1,1),()=>{text('what you ask for',960,475,75,C.ink,400,'center',true);text('is what you get',960,578,75,C.green,400,'center',true);});}else{fade(enter(t,4,1),()=>{text('FlexPart',960,348,95,C.ink,600,'center');text('Text-Controlled Semantics-Aware',960,451,43,C.ink,400,'center',true);text('3D Part Segmentation at Flexible Granularity',960,512,43,C.ink,400,'center',true);text('what you ask for is what you get',960,630,30,C.green,400,'center');for(let i=0;i<3;i++)image(['a_parts','b_fine','c_out'][i],605+i*250,717,210,235);});}}
+function ending(t){fade(enter(t,0,.85),()=>{text('FlexPart',960,348,98,C.ink,650,'center',true);text('Text-Controlled Semantics-Aware',960,451,43,C.ink,500,'center',true);text('3D Part Segmentation at Flexible Granularity',960,512,43,C.ink,500,'center',true);text('what you ask for is what you get',960,630,29,C.green,450,'center');for(let i=0;i<3;i++)image(['a_parts','b_fine','c_out'][i],605+i*250,717,210,235);});}
 
 window.renderFrame=async t=>{ctx.clearRect(0,0,W,H);ctx.fillStyle='white';ctx.fillRect(0,0,W,H);if(t<4)intro(t);else if(t<17)manual(t-4);else if(t<35)multi(t-17);else if(t<51)selective(t-35);else if(t<71)promptSwap(t-51);else if(t<79)merge(t-71);else if(t<84)genIntro(t-79);else if(t<124){const n=Math.floor((t-84)/10)+1;singleAsset(t-84-(n-1)*10,n);}else if(t<130)allAssets(t-124);else ending(t-130);};
 window.filmReady=true;

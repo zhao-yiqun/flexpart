@@ -1,5 +1,31 @@
 {
-  "duration": 142,
+  "duration": 138,
+  "fonts": {
+    "Manrope": true,
+    "Inter": true
+  },
+  "research": [
+    {
+      "src": "assets/method-pipeline.webp",
+      "loaded": true
+    },
+    {
+      "src": "assets/results-tiny.webp",
+      "loaded": true
+    },
+    {
+      "src": "assets/results-granularity.webp",
+      "loaded": true
+    },
+    {
+      "src": "assets/results-selective.webp",
+      "loaded": true
+    },
+    {
+      "src": "assets/results-ablation.webp",
+      "loaded": true
+    }
+  ],
   "loops": [
     {
       "duration": 10,
@@ -30,6 +56,7 @@
   "errors": [],
   "checks": [
     "desktop and mobile visual snapshots",
+    "five main-paper figures loaded",
     "mode tabs and arrow-key navigation",
     "video chapter seek",
     "four loops play and pause",
